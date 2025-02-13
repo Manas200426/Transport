@@ -1,0 +1,160 @@
+/* General Styles */
+body {
+  background-color: #8aa7c4; /* ERP-style background */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Left-Aligned Table */
+.alterLedger {
+  width: 40%;
+  max-width: 400px;
+  margin: 20px; /* Left align */
+  padding: 12px;
+  background-color: #f8f9fa;
+  border: 2px solid #004a99;
+  border-radius: 6px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.alterLedger h2 {
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 6px;
+  background-color: #004a99;
+  color: white;
+  border-radius: 4px;
+}
+
+/* Table Styling */
+.ledgerTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+  background-color: white;
+}
+
+.ledgerTable th,
+.ledgerTable td {
+  padding: 6px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  text-align: center;
+}
+
+.ledgerTable th {
+  background-color: #d2dbe5;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.ledgerTable td:hover {
+  background-color: #c1d1e3;
+  cursor: pointer;
+}
+
+/* FIXED: Popup Centered Properly */
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(133, 181, 228, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Popup Content */
+.popupContent {
+  background-color: #9ab5ce;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  max-height: 75vh;
+  overflow-y: auto;
+  position: relative;
+  font-size: 12px;
+}
+
+/* Restore Original Form Layout */
+.ledgerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Labels & Inputs - ORIGINAL LAYOUT RESTORED */
+.formGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formGroup label {
+  width: 35%;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.formGroup input {
+  width: 60%;
+  padding: 4px;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+/* Buttons */
+.popupButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.updateButton,
+.closeButton {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  border: none;
+}
+
+.updateButton {
+  background-color: #007bff;
+  color: white;
+}
+
+.closeButton {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Search Box */
+.searchBox {
+  width: 100%;
+  max-width: 280px;
+  padding: 8px;
+  border: 1px solid #949494;
+  border-radius: 4px;
+  font-size: 12px;
+  background: #f8f9fa;
+}
+
+.searchBox:hover {
+  border-color: #777;
+}
+
+.searchBox:focus {
+  outline: none;
+  border-color: #007bff;
+  background: white;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}

@@ -1,0 +1,58 @@
+/* Redesigned ERP Login Page */
+
+.loginPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+.loginBox {
+  width: 350px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.inputField {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.loginButton {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff9800;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.loginButton:hover {
+  background-color: #e68900;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .loginBox {
+    width: 90%;
+    padding: 20px;
+  }
+}

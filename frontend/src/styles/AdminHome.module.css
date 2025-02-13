@@ -1,0 +1,110 @@
+/* Admin Container */
+.adminContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden; 
+}
+
+/* Navbar - Smaller & Right-Aligned Text */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0d0d0d;
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid white;
+  object-fit: cover;
+}
+
+/* Sidebar - Thinner & More Left */
+.sidebar {
+  width: 110px; /* Further reduced width */
+  background-color: #7a99b8;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid black; /* Thin black separator */
+  height: 100%;
+}
+
+/* Sidebar Buttons - Smaller & Compact */
+.sidebar button {
+  background: none;
+  border: none;
+  padding: 6px;
+  margin: 2px 0;
+  cursor: pointer;
+  text-align: left;
+  font-size: 10px; /* Smaller text */
+  color: white;
+}
+
+.sidebar button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+/* SubMenu - Smaller & Clean */
+.subMenu {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+}
+
+.subMenu button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 4px;
+  margin: 2px 0;
+  cursor: pointer;
+  text-align: left;
+  font-size: 9px; /* Even smaller text */
+  color: white;
+}
+
+.subMenu button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+/* Main Content - Adjusted */
+.mainContent {
+  display: flex;
+  flex-grow: 1;
+  height: calc(100vh - 20px); /* Navbar height subtracted */
+  overflow: hidden; /* Prevents content overflow */
+}
+
+/* Content Area */
+.content {
+  flex-grow: 1;
+  padding: 10px;
+  background-color: #f4f6f8;
+  overflow-y: auto;
+}
+
+/* Alter & Create Components - Left-Aligned */
+.componentContainer {
+  display: flex;
+  flex-direction: column;
+  margin-left: 130px; /* Moves it to align with sidebar */
+  padding: 10px;
+  width: 60%; /* Smaller width for compact look */
+  background: white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Smaller Headers */
+h2, h3 {
+  font-size: 12px;
+}

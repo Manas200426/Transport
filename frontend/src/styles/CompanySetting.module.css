@@ -1,0 +1,88 @@
+.container {
+    max-width: 500px; /* Reduced width for compact layout */
+    margin: auto;
+    padding: 10px;
+    background: #f5f7fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header */
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 12px; /* Smaller heading */
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Display Section */
+  .details {
+    background: white;
+    padding: 8px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    font-size: 10px; /* Compact text */
+  }
+  
+  .details p {
+    font-size: 10px;
+    color: #333;
+    margin: 4px 0;
+  }
+  
+  .details strong {
+    color: #7a99b8;
+  }
+  
+  /* Company Logo */
+  .logo {
+    display: block;
+    max-width: 80px; /* Smaller logo */
+    height: auto;
+    margin: 5px auto;
+    border-radius: 4px;
+    border: 1px solid #7a99b8;
+  }
+  
+  /* Form */
+  .form {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 8px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form input {
+    font-size: 10px; /* Very small input text */
+    padding: 6px;
+    margin-bottom: 6px;
+    border: 1px solid #7a99b8;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .form input:focus {
+    border-color: #506e88;
+    box-shadow: 0 0 3px rgba(122, 153, 184, 0.5);
+  }
+  
+  /* Button */
+  button {
+    padding: 6px;
+    font-size: 10px; /* Small button text */
+    background: #7a99b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background: #5f7f9f;
+  }
+  

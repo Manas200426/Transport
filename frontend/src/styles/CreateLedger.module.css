@@ -1,0 +1,161 @@
+/* Compact Main Container */
+.ledgerContainer {
+  width: 40%;
+  max-width: 400px;
+  margin-left: 10px; /* Push it to the left */
+  margin-top: 10px; 
+  font-family: Arial, sans-serif;
+  padding: 12px;
+  background-color: #80a0c0;;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  background-color: #004a99;
+  color: white;
+  padding: 6px;
+  font-size: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+/* Form Container */
+.ledgerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+/* Form Row: Left & Right sections */
+.formRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Left & Right Sections */
+.leftSection,
+.rightSection {
+  width: 48%;
+}
+
+/* Labels */
+.formGroup {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 6px;
+}
+
+label {
+  width: 110px;
+  font-weight: bold;
+  text-align: center;
+  padding: 4px;
+  background-color: #e8f0fe;
+  border: 1px solid #004a99;
+  color: #004a99;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+/* Input Fields (Fixed Width & Height) */
+input {
+  width: 100%;
+  max-width: 180px;  /* Ensures inputs fit inside form */
+  padding: 3px 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 12px;
+  height: 22px;
+}
+
+/* Specific Fix for Mobile & Email Fields */
+input[type="tel"],
+input[type="email"] {
+  max-width: 150px; /* Prevents them from breaking the layout */
+}
+
+/* Company Info Header */
+.companyInfoHeader {
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 5px;
+  background-color: #004a99;
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+/* Separator Line */
+.separator {
+  width: 100%;
+  border-top: 1px solid #004a99;
+  margin: 8px 0;
+}
+
+/* Contact Section */
+.contactSection {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Right Contact Group */
+.rightContact {
+  width: 48%;
+}
+
+/* Save Button */
+.saveContainer {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.saveButton {
+  background-color: #28a745;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+.saveButton:hover {
+  background-color: #218838;
+}
+
+/* Responsive Fixes */
+@media screen and (max-width: 768px) {
+  .ledgerContainer {
+    width: 85%;
+    padding: 8px;
+  }
+
+  .formRow, .contactSection {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .leftSection, .rightSection, .rightContact {
+    width: 100%;
+  }
+
+  label {
+    width: 100%;
+    text-align: left;
+  }
+
+  input {
+    width: 100%;
+    max-width: 140px; /* Further reduced for small screens */
+    height: 20px; /* Smaller height */
+  }
+}

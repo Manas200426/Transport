@@ -1,0 +1,126 @@
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #b4d2f0;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar */
+.navbar {
+  background-color: #7a99b8;
+  color: white;
+  padding: 8px;
+  font-size: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Heading */
+.heading {
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #4d6b8f;
+  margin-bottom: 8px;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Rows */
+.row {
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Labels */
+label {
+  font-size: 10px;
+  font-weight: bold;
+  color: #3c5878;
+  width: 110px;  /* Slightly reduced */
+}
+
+/* Inputs */
+input {
+  flex: 1;
+  padding: 3px;  /* Reduced padding */
+  font-size: 10px;  /* Reduced font size */
+  border: 1px solid #7a99b8;
+  border-radius: 3px;
+  height: 18px;  /* Reduced height */
+}
+
+/* Product Table */
+.subHeading {
+  font-size: 11px;
+  font-weight: bold;
+  color: #4d6b8f;
+  margin-top: 10px;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;  /* Reduced font size */
+  margin-top: 8px;
+}
+
+/* Table Borders */
+.table th, .table td {
+  border: 1px solid black;
+  padding: 4px;  /* Reduced padding */
+  text-align: left;
+}
+
+/* Table Headers */
+.table th {
+  background-color: #ddd;
+  font-weight: bold;
+  font-size: 10px; /* Smaller text */
+}
+
+/* Table Inputs */
+.table input {
+  width: 100%;
+  padding: 2px; /* More compact */
+  font-size: 10px;
+  border: 1px solid black;
+  height: 16px; /* Reduced height */
+}
+
+/* Add Row Button */
+.addRowButton {
+  background-color: #7a99b8;
+  color: white;
+  font-size: 10px;
+  padding: 4px;
+  border: none;
+  cursor: pointer;
+  margin-top: 4px;
+  border-radius: 3px;
+}
+
+/* Submit Button */
+.button {
+  background-color: #4d6b8f;
+  color: white;
+  font-size: 11px;
+  padding: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+  border-radius: 3px;
+}
