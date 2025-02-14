@@ -1,7 +1,7 @@
 /* Compact Main Container */
 .ledgerContainer {
-  width: 40%;
-  max-width: 400px;
+  width: 80%;
+  max-width: 500px;
   margin-left: 10px; /* Push it to the left */
   margin-top: 10px; 
   font-family: Arial, sans-serif;

@@ -40,7 +40,7 @@ const CreateLedger = () => {
       alert(data.message);
 
       if (response.ok) {
-        navigate("/"); // Redirect to home
+        navigate("/admin-home"); // Redirect to home
       }
     } catch (error) {
       console.error("Error:", error);

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import styles from "../styles/LrEntry.module.css";
+import { useEffect } from "react";
+import axios from "axios";
 
 const LrBooking = () => {
+  const [cities, setCities] = useState([]);
+  const [ledgers, setLedgers] = useState([]);
   const [formData, setFormData] = useState({
     lrNumber: "",
     lrDate: "",
@@ -27,6 +31,7 @@ const LrBooking = () => {
   ]);
 
   const handleChange = (e) => {
+    console.log(`Updating ${e.target.name} to:`, e.target.value);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -42,10 +47,32 @@ const LrBooking = () => {
       { hsnCode: "", productDescription: "", unit: "", taxableAmount: "" },
     ]);
   };
+  //ledger  api
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/ledger/all")
+      .then((response) => setLedgers(response.data))
+      .catch((error) => console.error("Error fetching ledgers:", error));
+  }, []);
+
+  //  city to from
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/cities/all") // ✅ Correct API endpoint for CityMaster
+      .then((response) => {
+        if (response.data.success) {
+          setCities(response.data.data);
+        }
+      })
+      .catch((error) => console.error("Error fetching cities:", error));
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const finalData = { ...formData, table: tableData };
+  
+    console.log("Submitting Data:", finalData); // ✅ Debugging
+  
     try {
       const response = await fetch("http://localhost:5000/api/lr", {
         method: "POST",
@@ -54,6 +81,9 @@ const LrBooking = () => {
         },
         body: JSON.stringify(finalData),
       });
+  
+      const responseData = await response.json(); // ✅ Read server response
+  
       if (response.ok) {
         alert("Data saved successfully!");
         setFormData({
@@ -79,13 +109,15 @@ const LrBooking = () => {
           { hsnCode: "", productDescription: "", unit: "", taxableAmount: "" },
         ]);
       } else {
-        alert("Failed to save data");
+        console.error("Server Response Error:", responseData);
+        alert("Failed to save data: " + responseData.message);
       }
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred");
     }
   };
+  
 
   return (
     <div className={styles.container}>
@@ -215,21 +247,24 @@ const LrBooking = () => {
             required
           />
           <label>From</label>
-          <input
-            type="text"
-            name="from"
-            value={formData.from}
-            onChange={handleChange}
-            required
-          />
+          <select name="from" value={formData.from} onChange={handleChange}>
+            <option value="">Select From City</option>
+            {cities.map((city) => (
+              <option key={city._id} value={city.name}>
+                {city.name}
+              </option>
+            ))}
+          </select>
+
           <label>To</label>
-          <input
-            type="text"
-            name="to"
-            value={formData.to}
-            onChange={handleChange}
-            required
-          />
+          <select name="to" value={formData.to} onChange={handleChange}>
+            <option value="">Select To City</option>
+            {cities.map((city) => (
+              <option key={city._id} value={city.name}>
+                {city.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Table */}
