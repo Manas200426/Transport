@@ -8,7 +8,7 @@ const ledgerRoutes = require("./routes/ledgerRoutes");
 const cityRoutes = require("./routes/cityRoutes");
 const companyRoutes = require("./routes/companyRoutes");
 const lrRoutes = require("./routes/lrEntryRoutes"); 
-
+const ledgerTypeRoutes = require("./routes/ledgerTypeRoutes");
 
 app.use(cors());
 app.use(express.json());
@@ -18,6 +18,7 @@ app.use("/api/cities", cityRoutes);
 app.use("/uploads", express.static("uploads")); // Serve images from uploads folder
 app.use("/api/company", companyRoutes);
 app.use("/api/lr", lrRoutes);
+app.use("/api/ledger-types", ledgerTypeRoutes);
 
 
 mongoose.connect("mongodb://localhost:27017/ledgerDB", {

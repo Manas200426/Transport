@@ -6,6 +6,7 @@ import CompanySetting from "../components/CompanySetting";
 import LrBooking from "../components/LrBooking";  // ✅ Import LrBooking Component
 import DisplayLr from "../components/DisplayLr";
 import styles from "../styles/AdminHome.module.css";
+import TypeLedger from "../components/TypeLedger";
 
 
 const AdminHome = () => {
@@ -36,6 +37,9 @@ const AdminHome = () => {
               </button>
               <button onClick={() => setActiveComponent("CityMaster")}>
                 City Master
+              </button>
+              <button onClick={() => setActiveComponent("TypeLedger")}>
+                Type of Ledger
               </button>
             </div>
           )}
@@ -76,7 +80,8 @@ const AdminHome = () => {
           {activeComponent === "CityMaster" && <CityMaster />}
           {activeComponent === "companySetting" && <CompanySetting />}
           {activeComponent === "lrBooking" && <LrBooking />} 
-          {activeComponent === "DisplayLr" && <DisplayLr />} 
+          {activeComponent === "DisplayLr" && <DisplayLr />}
+          {activeComponent === "TypeLedger" && <TypeLedger />}  
            {/* ✅ New Component */}
         </div>
       </div>

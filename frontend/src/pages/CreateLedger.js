@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/CreateLedger.module.css"; // Import the CSS module
 
 const CreateLedger = () => {
+  const [ledgerTypes, setLedgerTypes] = useState([]);
   const [ledger, setLedger] = useState({
     name: "",
     alias: "",
@@ -24,6 +25,14 @@ const CreateLedger = () => {
   const handleChange = (e) => {
     setLedger({ ...ledger, [e.target.name]: e.target.value });
   };
+
+  // Fetch ledger types from the backend
+  useEffect(() => {
+    fetch("http://localhost:5000/api/ledger-types") // Update with your actual API endpoint
+      .then((response) => response.json())
+      .then((data) => setLedgerTypes(data))
+      .catch((error) => console.error("Error fetching ledger types:", error));
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,7 +76,22 @@ const CreateLedger = () => {
             </div>
             <div className={styles.formGroup}>
               <label>Type of Ledger:</label>
-              <input type="text" name="ledgerType" onChange={handleChange} required />
+              <select
+                name="ledgerType"
+                value={ledger.ledgerType}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Ledger Type</option>
+                {ledgerTypes.map((type, index) => (
+                  <option
+                    key={index}
+                    value={typeof type === "string" ? type : type.type}
+                  >
+                    {typeof type === "string" ? type : type.type}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
@@ -116,18 +140,30 @@ const CreateLedger = () => {
           <div className={styles.rightContact}>
             <div className={styles.formGroup}>
               <label>Mobile Number:</label>
-              <input type="text" name="mobile" onChange={handleChange} required />
+              <input
+                type="text"
+                name="mobile"
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className={styles.formGroup}>
               <label>Email ID:</label>
-              <input type="email" name="email" onChange={handleChange} required />
+              <input
+                type="email"
+                name="email"
+                onChange={handleChange}
+                required
+              />
             </div>
           </div>
         </div>
 
         {/* Save Button */}
         <div className={styles.saveContainer}>
-          <button type="submit" className={styles.saveButton}>Save</button>
+          <button type="submit" className={styles.saveButton}>
+            Save
+          </button>
         </div>
       </form>
     </div>

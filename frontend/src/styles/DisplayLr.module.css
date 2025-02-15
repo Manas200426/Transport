@@ -1,50 +1,77 @@
 /* Container */
 .container {
-    width: 90%;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 10px;
-    background-color: #f4f7fa;
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Heading */
-  .heading {
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-    color: #4d6b8f;
-    margin-bottom: 10px;
-  }
-  
-  /* Table */
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-    margin-top: 8px;
-  }
-  
-  /* Table Borders */
-  .table th, .table td {
-    border: 1px solid black;
-    padding: 5px;
-    text-align: left;
-  }
-  
-  /* Table Headers */
-  .table th {
-    background-color: #7a99b8;
-    font-weight: bold;
-    color: white;
-  }
-  
-  /* No Data */
-  .noData {
-    text-align: center;
-    padding: 10px;
-    font-size: 12px;
-    color: #777;
-  }
-  
+  width: 95%;
+  max-width: 750px;
+  margin: 15px auto;
+  padding: 8px;
+  background-color: #e3eaf3;
+  border-radius: 4px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+/* Heading */
+.heading {
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #2f4c6e;
+  margin-bottom: 8px;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  margin-top: 6px;
+}
+
+/* Table Borders */
+.table th, .table td {
+  border: 1px solid #4d6b8f;
+  padding: 4px;
+  text-align: left;
+}
+
+/* Table Headers */
+.table th {
+  background-color: #7a99b8;
+  font-weight: 600;
+  color: white;
+  padding: 5px;
+}
+
+/* Table Rows */
+.table tr:nth-child(even) {
+  background-color: #dce5f1;
+}
+
+.table tr:hover {
+  background-color: #b0c4de;
+  transition: 0.2s ease-in-out;
+}
+
+/* No Data */
+.noData {
+  text-align: center;
+  padding: 8px;
+  font-size: 11px;
+  color: #666;
+}
+
+/* Download Button */
+.downloadBtn {
+  background-color: #5f89b3;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 11px;
+  text-align: center;
+  transition: background 0.2s ease-in-out;
+}
+
+.downloadBtn:hover {
+  background-color: #3e6b94;
+}

@@ -4,14 +4,14 @@
   max-width: 1200px;
   margin: 20px auto;
   padding: 10px;
-  background-color: #b4d2f0;
+  background-color: #b5d2ee;
   border-radius: 5px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Navbar */
 .navbar {
-  background-color: #7a99b8;
+  background-color: #5f7f9e;
   color: white;
   padding: 8px;
   font-size: 12px;

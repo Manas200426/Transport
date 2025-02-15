@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import styles from "../styles/DisplayLr.module.css"
+import styles from "../styles/DisplayLr.module.css";
+
 const DisplayLr = () => {
   const [lrData, setLrData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,6 +25,12 @@ const DisplayLr = () => {
     fetchLrData();
   }, []);
 
+  // Function to handle PDF download
+  const handleDownload = (id) => {
+    const pdfUrl = `http://localhost:5000/api/lr/${id}/pdf`;
+    window.open(pdfUrl, "_blank"); // Open in a new tab
+  };
+
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>LR Records</h2>
@@ -39,6 +46,7 @@ const DisplayLr = () => {
               <th>LR Date</th>
               <th>Consignor Name</th>
               <th>Total Amount</th>
+              <th>Download</th> {/* New column for the Download button */}
             </tr>
           </thead>
           <tbody>
@@ -49,11 +57,16 @@ const DisplayLr = () => {
                   <td>{lr.lrDate}</td>
                   <td>{lr.consignorName}</td>
                   <td>{lr.total}</td>
+                  <td>
+                    <button className={styles.downloadBtn} onClick={() => handleDownload(lr._id)}>
+                      Download PDF
+                    </button>
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="4" className={styles.noData}>
+                <td colSpan="5" className={styles.noData}>
                   No LR records found.
                 </td>
               </tr>

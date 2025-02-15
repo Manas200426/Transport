@@ -47,13 +47,6 @@ const LrBooking = () => {
       { hsnCode: "", productDescription: "", unit: "", taxableAmount: "" },
     ]);
   };
-  //ledger  api
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/ledger/all")
-      .then((response) => setLedgers(response.data))
-      .catch((error) => console.error("Error fetching ledgers:", error));
-  }, []);
 
   //  city to from
   useEffect(() => {
@@ -67,12 +60,19 @@ const LrBooking = () => {
       .catch((error) => console.error("Error fetching cities:", error));
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/ledger/all")
+      .then((response) => setLedgers(response.data))
+      .catch((error) => console.error("Error fetching ledgers:", error));
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const finalData = { ...formData, table: tableData };
-  
+
     console.log("Submitting Data:", finalData); // ✅ Debugging
-  
+
     try {
       const response = await fetch("http://localhost:5000/api/lr", {
         method: "POST",
@@ -81,9 +81,9 @@ const LrBooking = () => {
         },
         body: JSON.stringify(finalData),
       });
-  
+
       const responseData = await response.json(); // ✅ Read server response
-  
+
       if (response.ok) {
         alert("Data saved successfully!");
         setFormData({
@@ -117,7 +117,6 @@ const LrBooking = () => {
       alert("An error occurred");
     }
   };
-  
 
   return (
     <div className={styles.container}>
@@ -147,21 +146,31 @@ const LrBooking = () => {
         {/* Consignor & Consignee */}
         <div className={styles.row}>
           <label>Consignor Name</label>
-          <input
-            type="text"
+          <select
             name="consignorName"
             value={formData.consignorName}
             onChange={handleChange}
-            required
-          />
+          >
+            <option value="">Select Consignor</option>
+            {ledgers.map((ledger) => (
+              <option key={ledger._id} value={ledger.name}>
+                {ledger.name}
+              </option>
+            ))}
+          </select>
           <label>Consignee Name</label>
-          <input
-            type="text"
+          <select
             name="consigneeName"
             value={formData.consigneeName}
             onChange={handleChange}
-            required
-          />
+          >
+            <option value="">Select Consignee</option>
+            {ledgers.map((ledger) => (
+              <option key={ledger._id} value={ledger.name}>
+                {ledger.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* E-Way Bill Details */}
