@@ -7,6 +7,8 @@ import LrBooking from "../components/LrBooking";
 import DisplayLr from "../components/DisplayLr";
 import styles from "../styles/AdminHome.module.css";
 import TypeLedger from "../components/TypeLedger";
+import UnitMater from "../components/UnitMater";
+import VehicleMaster from "../components/VehicleMaster";
 
 const AdminHome = () => {
   const [activeComponent, setActiveComponent] = useState("welcome");
@@ -33,6 +35,12 @@ const AdminHome = () => {
               </button>
               <button onClick={() => setActiveComponent("CityMaster")}>
                 City Master
+              </button>
+              <button onClick={() => setActiveComponent("UnitMaster")}>
+                Unit Creation
+              </button>
+              <button onClick={() => setActiveComponent("VehicleMaster")}>
+                Vehicle Creation
               </button>
               <button onClick={() => setActiveComponent("TypeLedger")}>
                 Type of Ledger
@@ -72,6 +80,8 @@ const AdminHome = () => {
           {activeComponent === "lrBooking" && <LrBooking />}
           {activeComponent === "DisplayLr" && <DisplayLr />}
           {activeComponent === "TypeLedger" && <TypeLedger />}
+          {activeComponent === "UnitMaster" && <UnitMater />}
+          {activeComponent === "VehicleMaster" && <VehicleMaster />}
         </div>
       </div>
     </div>
