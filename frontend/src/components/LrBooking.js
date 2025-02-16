@@ -147,6 +147,7 @@ const LrBooking = () => {
         <div className={styles.row}>
           <label>Consignor Name</label>
           <select
+            className="lrBookingSelect"
             name="consignorName"
             value={formData.consignorName}
             onChange={handleChange}
@@ -159,7 +160,7 @@ const LrBooking = () => {
             ))}
           </select>
           <label>Consignee Name</label>
-          <select
+          <select className="lrBookingSelect"
             name="consigneeName"
             value={formData.consigneeName}
             onChange={handleChange}
@@ -300,13 +301,21 @@ const LrBooking = () => {
                   />
                 </td>
                 <td>
-                  <input
-                    type="text"
+                  <select className="lrBookingSelect"
                     name="productDescription"
                     value={row.productDescription}
                     onChange={(e) => handleTableChange(index, e)}
                     required
-                  />
+                  >
+                    <option value="">Select Product</option>
+                    {ledgers
+                      .filter((ledger) => ledger.ledgerType === "sales")
+                      .map((ledger) => (
+                        <option key={ledger._id} value={ledger.name}>
+                          {ledger.name}
+                        </option>
+                      ))}
+                  </select>
                 </td>
                 <td>
                   <input
@@ -338,18 +347,18 @@ const LrBooking = () => {
         >
           Add Row
         </button>
-
-        {/* Total Amount */}
-        <div className={styles.row}>
-          <label>Total Amount</label>
-          <input
-            type="number"
-            name="total"
-            value={formData.total}
-            onChange={handleChange}
-            required
-          />
-        </div>
+{/* Total Amount */}
+<div className={`${styles.row} ${styles.totalAmount}`}>
+  <label className={styles.totalAmountLabel}>Total Amount</label>
+  <input
+    type="number"
+    name="total"
+    className={styles.totalAmountInput}
+    value={formData.total}
+    onChange={handleChange}
+    required
+  />
+</div>
 
         <button type="submit" className={styles.button}>
           Submit

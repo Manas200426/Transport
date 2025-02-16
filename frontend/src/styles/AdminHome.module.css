@@ -108,3 +108,15 @@
 h2, h3 {
   font-size: 12px;
 }
+/* ... other styles ... */
+
+.settingsContainer {
+  position: fixed;
+  margin-top: 450px; /* Add some spacing above the settings */
+  border-top: 1px solid #ccc; /* Optional: Add a separator line */
+  padding-top: 10px; /* Add padding above the button */
+}
+
+
+
+/* ... other styles ... */

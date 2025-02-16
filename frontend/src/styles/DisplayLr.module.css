@@ -1,77 +1,90 @@
 /* Container */
 .container {
-  width: 95%;
-  max-width: 750px;
-  margin: 15px auto;
-  padding: 8px;
-  background-color: #e3eaf3;
-  border-radius: 4px;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
+  width: 90%;
+  max-width: 900px;
+  margin: 10px auto; /* Reduced margin */
+  padding: 12px; /* Reduced padding */
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+  overflow-x: auto;
 }
 
 /* Heading */
 .heading {
   text-align: center;
-  font-size: 12px;
-  font-weight: bold;
-  color: #2f4c6e;
-  margin-bottom: 8px;
+  font-size: 1rem; /* Reduced font size */
+  font-weight: 500; /* Reduced font weight */
+  color: #343a40;
+  margin-bottom: 8px; /* Reduced margin */
 }
 
 /* Table */
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 11px;
-  margin-top: 6px;
+  font-size: 0.8rem; /* Reduced font size */
+  margin-top: 5px; /* Reduced margin */
+  border: 1px solid #dee2e6;
+  table-layout: fixed;
 }
 
 /* Table Borders */
-.table th, .table td {
-  border: 1px solid #4d6b8f;
-  padding: 4px;
+.table th,
+.table td {
+  border: 1px solid #dee2e6;
+  padding: 6px; /* Reduced padding */
   text-align: left;
+  vertical-align: middle;
+  word-break: break-word;
+  overflow: hidden;
 }
 
 /* Table Headers */
 .table th {
-  background-color: #7a99b8;
-  font-weight: 600;
+  background-color: #bcccdc;
+  font-weight: 400; /* Reduced font weight */
   color: white;
-  padding: 5px;
+  padding: 8px; /* Reduced padding */
+  text-transform: uppercase;
 }
 
 /* Table Rows */
 .table tr:nth-child(even) {
-  background-color: #dce5f1;
+  background-color: #f2f3f5;
 }
 
 .table tr:hover {
-  background-color: #b0c4de;
-  transition: 0.2s ease-in-out;
+  background-color: #e9ecef;
+  transition: background-color 0.2s ease-in-out;
 }
 
 /* No Data */
 .noData {
   text-align: center;
-  padding: 8px;
-  font-size: 11px;
-  color: #666;
+  padding: 12px; /* Reduced padding */
+  font-size: 0.8rem; /* Reduced font size */
+  color: #6c757d;
 }
 
 /* Download Button */
 .downloadBtn {
-  background-color: #5f89b3;
+  background-color: #8395a9;
   color: white;
   border: none;
-  padding: 4px 8px;
+  padding: 6px 12px; /* Reduced padding */
   cursor: pointer;
-  border-radius: 3px;
-  font-size: 11px;
+  border-radius: 4px;
+  font-size: 0.8rem; /* Reduced font size */
   text-align: center;
-  transition: background 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .downloadBtn:hover {
-  background-color: #3e6b94;
+  background-color: #0056b3;
+}
+
+/* Responsive adjustments - Keep these, but adjust as needed */
+@media (max-width: 768px) {
+  /* ... your existing media query styles ... */
 }

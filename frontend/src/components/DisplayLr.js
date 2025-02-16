@@ -45,8 +45,10 @@ const DisplayLr = () => {
               <th>LR Number</th>
               <th>LR Date</th>
               <th>Consignor Name</th>
+              <th>From</th> {/* New Column */}
+              <th>To</th> {/* New Column */}
               <th>Total Amount</th>
-              <th>Download</th> {/* New column for the Download button */}
+              <th>Download</th>
             </tr>
           </thead>
           <tbody>
@@ -56,6 +58,8 @@ const DisplayLr = () => {
                   <td>{lr.lrNumber}</td>
                   <td>{lr.lrDate}</td>
                   <td>{lr.consignorName}</td>
+                  <td>{lr.from}</td> {/* New Column */}
+                  <td>{lr.to}</td> {/* New Column */}
                   <td>{lr.total}</td>
                   <td>
                     <button className={styles.downloadBtn} onClick={() => handleDownload(lr._id)}>
@@ -66,7 +70,7 @@ const DisplayLr = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="5" className={styles.noData}>
+                <td colSpan="7" className={styles.noData}>
                   No LR records found.
                 </td>
               </tr>

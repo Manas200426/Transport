@@ -4,6 +4,8 @@ import styles from "../styles/CreateLedger.module.css"; // Import the CSS module
 
 const CreateLedger = () => {
   const [ledgerTypes, setLedgerTypes] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredTypes, setFilteredTypes] = useState([]);
   const [ledger, setLedger] = useState({
     name: "",
     alias: "",
@@ -22,17 +24,37 @@ const CreateLedger = () => {
 
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setLedger({ ...ledger, [e.target.name]: e.target.value });
-  };
-
-  // Fetch ledger types from the backend
   useEffect(() => {
     fetch("http://localhost:5000/api/ledger-types") // Update with your actual API endpoint
       .then((response) => response.json())
       .then((data) => setLedgerTypes(data))
       .catch((error) => console.error("Error fetching ledger types:", error));
   }, []);
+
+  const handleChange = (e) => {
+    setLedger({ ...ledger, [e.target.name]: e.target.value });
+  };
+
+  // Handle search input change
+  const handleSearchChange = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+
+    // Filter ledger types dynamically
+    const filtered = ledgerTypes.filter((type) =>
+      (typeof type === "string" ? type : type.type)
+        .toLowerCase()
+        .includes(value.toLowerCase())
+    );
+    setFilteredTypes(filtered);
+  };
+
+  // Handle selection from dropdown
+  const handleSelectType = (selectedType) => {
+    setLedger({ ...ledger, ledgerType: selectedType });
+    setSearchTerm(selectedType);
+    setFilteredTypes([]); // Hide suggestions after selection
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,10 +81,9 @@ const CreateLedger = () => {
   return (
     <div className={styles.ledgerContainer}>
       {/* Navbar */}
-      <div className={styles.navbar}>Ledger creation</div>
+      <div className={styles.navbar}>Ledger Creation</div>
 
       <form onSubmit={handleSubmit} className={styles.ledgerForm}>
-        {/* First Row: Left & Right Sections */}
         <div className={styles.formRow}>
           {/* Left Section: Name, Alias, Type of Ledger */}
           <div className={styles.leftSection}>
@@ -76,26 +97,34 @@ const CreateLedger = () => {
             </div>
             <div className={styles.formGroup}>
               <label>Type of Ledger:</label>
-              <select
+              <input
+                type="text"
                 name="ledgerType"
-                value={ledger.ledgerType}
-                onChange={handleChange}
+                value={searchTerm}
+                onChange={handleSearchChange}
+                placeholder="Search Ledger Type..."
                 required
-              >
-                <option value="">Select Ledger Type</option>
-                {ledgerTypes.map((type, index) => (
-                  <option
-                    key={index}
-                    value={typeof type === "string" ? type : type.type}
-                  >
-                    {typeof type === "string" ? type : type.type}
-                  </option>
-                ))}
-              </select>
+                autoComplete="off"
+              />
+              {/* Show dropdown only when input has value and filtered results exist */}
+              {searchTerm && filteredTypes.length > 0 && (
+                <ul className={styles.suggestionsList}>
+                  {filteredTypes.map((type, index) => (
+                    <li
+                      key={index}
+                      onClick={() =>
+                        handleSelectType(typeof type === "string" ? type : type.type)
+                      }
+                    >
+                      {typeof type === "string" ? type : type.type}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
 
-          {/* Right Section: Company Info Header + Mailing Name to GST */}
+          {/* Right Section: Company Info */}
           <div className={styles.rightSection}>
             <div className={styles.companyInfoHeader}>Company Info</div>
             <div className={styles.addressSection}>
@@ -127,34 +156,18 @@ const CreateLedger = () => {
                 <label>GST Number:</label>
                 <input type="text" name="gst" onChange={handleChange} />
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Second Row: Contact Person + Mobile & Email */}
-        <div className={styles.contactSection}>
-          <div className={styles.formGroup}>
-            <label>Contact Person:</label>
-            <input type="text" name="contactPerson" onChange={handleChange} />
-          </div>
-          <div className={styles.rightContact}>
-            <div className={styles.formGroup}>
-              <label>Mobile Number:</label>
-              <input
-                type="text"
-                name="mobile"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className={styles.formGroup}>
-              <label>Email ID:</label>
-              <input
-                type="email"
-                name="email"
-                onChange={handleChange}
-                required
-              />
+              <div className={styles.formGroup}>
+                <label>Contact Person:</label>
+                <input type="text" name="contactPerson" onChange={handleChange} />
+              </div>
+              <div className={styles.formGroup}>
+                <label>Mobile Number:</label>
+                <input type="text" name="mobile" onChange={handleChange} required />
+              </div>
+              <div className={styles.formGroup}>
+                <label>Email ID:</label>
+                <input type="email" name="email" onChange={handleChange} required />
+              </div>
             </div>
           </div>
         </div>

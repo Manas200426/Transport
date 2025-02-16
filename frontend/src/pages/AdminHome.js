@@ -3,24 +3,20 @@ import CreateLedger from "./CreateLedger";
 import AlterLedger from "./AlterLedger";
 import CityMaster from "../components/CityMaster";
 import CompanySetting from "../components/CompanySetting";
-import LrBooking from "../components/LrBooking";  // ✅ Import LrBooking Component
+import LrBooking from "../components/LrBooking";
 import DisplayLr from "../components/DisplayLr";
 import styles from "../styles/AdminHome.module.css";
 import TypeLedger from "../components/TypeLedger";
 
-
 const AdminHome = () => {
   const [activeComponent, setActiveComponent] = useState("welcome");
   const [showMasterOptions, setShowMasterOptions] = useState(false);
-  const [showSettingsOptions, setShowSettingsOptions] = useState(false);
-  const [showBookingOptions, setShowBookingOptions] = useState(false); // ✅ New State
+  const [showBookingOptions, setShowBookingOptions] = useState(false);
 
   return (
     <div className={styles.adminContainer}>
-      {/* Navbar */}
       <div className={styles.navbar}>Admin Dashboard</div>
 
-      {/* Sidebar & Content Section */}
       <div className={styles.mainContent}>
         <div className={styles.sidebar}>
           {/* Master Section */}
@@ -44,19 +40,7 @@ const AdminHome = () => {
             </div>
           )}
 
-          {/* Settings Section */}
-          <button onClick={() => setShowSettingsOptions(!showSettingsOptions)}>
-            Settings
-          </button>
-          {showSettingsOptions && (
-            <div className={styles.subMenu}>
-              <button onClick={() => setActiveComponent("companySetting")}>
-                Company Setting
-              </button>
-            </div>
-          )}
-
-          {/* ✅ Booking Entry Section */}
+          {/* Booking Entry Section */}
           <button onClick={() => setShowBookingOptions(!showBookingOptions)}>
             Booking Entry
           </button>
@@ -70,19 +54,24 @@ const AdminHome = () => {
               </button>
             </div>
           )}
+
+          {/* Settings Section - Moved to the bottom */}
+          <div className={styles.settingsContainer}> {/* Added a container */}
+            <button onClick={() => setActiveComponent("companySetting")}>
+              Company Setting
+            </button>
+          </div>
         </div>
 
-        {/* Dynamic Content Rendering */}
         <div className={styles.content}>
           {activeComponent === "welcome" && <h2>Welcome Admin</h2>}
           {activeComponent === "createLedger" && <CreateLedger />}
           {activeComponent === "alterLedger" && <AlterLedger />}
           {activeComponent === "CityMaster" && <CityMaster />}
           {activeComponent === "companySetting" && <CompanySetting />}
-          {activeComponent === "lrBooking" && <LrBooking />} 
+          {activeComponent === "lrBooking" && <LrBooking />}
           {activeComponent === "DisplayLr" && <DisplayLr />}
-          {activeComponent === "TypeLedger" && <TypeLedger />}  
-           {/* ✅ New Component */}
+          {activeComponent === "TypeLedger" && <TypeLedger />}
         </div>
       </div>
     </div>

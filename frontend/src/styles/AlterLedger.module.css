@@ -1,53 +1,98 @@
 /* General Styles */
 body {
-  background-color: #8aa7c4; /* ERP-style background */
+  background-color: #eaf2fb; /* Consistent ERP-style background */
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
 }
 
-/* Left-Aligned Table */
+/* Navbar - Ensuring No Extra Space Above */
+.navbar {
+  margin: 0;
+  padding: 10px 15px;
+  background-color: #7a99b8;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Container for Spacing Consistency */
+.container {
+  padding: 0px 0px;
+}
+
+/* Left-Aligned Table Section */
 .alterLedger {
-  width: 40%;
-  max-width: 400px;
-  margin: 20px; /* Left align */
-  padding: 12px;
+  width: 12%;
+  max-width: 380px;
+  margin-left: -15px;
+  padding: 10px;
   background-color: #f8f9fa;
-  border: 2px solid #004a99;
+  border: 2px solid #0a0a0a;
   border-radius: 6px;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+  margin-top: -10px;
+  
 }
 
 .alterLedger h2 {
-  text-align: center;
-  font-size: 14px;
+  text-align: left; /* Left-aligned heading */
+  font-size: 10px;
   font-weight: bold;
-  padding: 6px;
-  background-color: #004a99;
+  margin-top: -10px;
+  padding: 5px;
+  background-color: #bcccdc;
   color: white;
   border-radius: 4px;
+  margin-bottom: 5px; 
+  height: 11px;/* Minimal gap after heading */
 }
 
-/* Table Styling */
+/* Search Box - Well Positioned */
+.searchBox {
+  width: 110px; /* Smaller width for compact design */
+  padding: 3px;
+  border: 1px solid #949494;
+  border-radius: 4px;
+  font-size: 11px;
+  background: #f8f9fa;
+  margin-bottom: 8px; /* Small gap between search box and table */
+  display: block; /* Ensuring block-level positioning */
+}
+
+.searchBox:hover {
+  border-color: #777;
+}
+
+.searchBox:focus {
+  outline: none;
+  border-color: #007bff;
+  background: white;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+/* Table Styling - Aligning Text Left */
 .ledgerTable {
+  
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 12px;
   background-color: white;
 }
 
 .ledgerTable th,
 .ledgerTable td {
   padding: 6px;
+ 
   border: 1px solid #ccc;
-  font-size: 12px;
-  text-align: center;
+  font-size: 11px;
+  text-align: left; /* Align text to the left */
 }
 
 .ledgerTable th {
   background-color: #d2dbe5;
   font-weight: bold;
   text-transform: uppercase;
+  font-size: 10.5px;
 }
 
 .ledgerTable td:hover {
@@ -55,7 +100,7 @@ body {
   cursor: pointer;
 }
 
-/* FIXED: Popup Centered Properly */
+/* Popup Centered */
 .popupOverlay {
   position: fixed;
   top: 0;
@@ -72,25 +117,24 @@ body {
 /* Popup Content */
 .popupContent {
   background-color: #9ab5ce;
-  padding: 15px;
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 6px;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 500px;
+  width: 85%;
+  max-width: 480px;
   max-height: 75vh;
   overflow-y: auto;
-  position: relative;
-  font-size: 12px;
+  font-size: 11px;
 }
 
-/* Restore Original Form Layout */
+/* Form Layout */
 .ledgerForm {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
-/* Labels & Inputs - ORIGINAL LAYOUT RESTORED */
+/* Labels & Inputs */
 .formGroup {
   display: flex;
   justify-content: space-between;
@@ -99,29 +143,28 @@ body {
 
 .formGroup label {
   width: 35%;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
 }
 
 .formGroup input {
   width: 60%;
-  padding: 4px;
+  padding: 3px;
   border: 1px solid #bbb;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 /* Buttons */
 .popupButtons {
   display: flex;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 6px;
 }
 
-.updateButton,
-.closeButton {
-  padding: 6px 12px;
-  font-size: 12px;
+.updateButton, .closeButton {
+  padding: 5px 10px;
+  font-size: 11px;
   border-radius: 3px;
   cursor: pointer;
   border: none;
@@ -137,24 +180,3 @@ body {
   color: white;
 }
 
-/* Search Box */
-.searchBox {
-  width: 100%;
-  max-width: 280px;
-  padding: 8px;
-  border: 1px solid #949494;
-  border-radius: 4px;
-  font-size: 12px;
-  background: #f8f9fa;
-}
-
-.searchBox:hover {
-  border-color: #777;
-}
-
-.searchBox:focus {
-  outline: none;
-  border-color: #007bff;
-  background: white;
-  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
-}
