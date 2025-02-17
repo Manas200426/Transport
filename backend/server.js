@@ -21,7 +21,7 @@ app.use("/uploads", express.static("uploads")); // Serve images from uploads fol
 app.use("/api/company", companyRoutes);
 app.use("/api/lr", lrRoutes);
 app.use("/api/ledger-types", ledgerTypeRoutes);
-app.use('/api', unitRoutes); // Base URL: /api/units
+app.use("/api", unitRoutes);  // Base URL: /api/units
 app.use("/api/vehicles", vehicleRoutes);
 
 
