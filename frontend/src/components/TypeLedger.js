@@ -46,18 +46,7 @@ const TypeLedger = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Type of Ledger</h2>
-      
-      <div className={styles.inputSection}>
-        <input
-          type="text"
-          placeholder="Enter Ledger Type"
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-          className={styles.inputBox}
-        />
-        <button onClick={handleAddType} className={styles.addButton}>Add</button>
-      </div>
+      <h2 className={styles.heading}>Type of Ledger</h2>
 
       <div className={styles.ledgerList}>
         {ledgerTypes.length > 0 ? (

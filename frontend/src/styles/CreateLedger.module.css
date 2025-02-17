@@ -8,7 +8,7 @@
   padding: 1px;
   background-color: #f8f8fb;
   border-radius: 8px;
-  border: solid black 2px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Navbar */

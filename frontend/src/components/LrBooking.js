@@ -308,112 +308,101 @@ const LrBooking = () => {
         {/* Table */}
         {/* Table */}
         <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Product Description</th>
-              <th>HSN Code</th>
-              <th>Rate</th>
-              <th>Unit</th>
-              <th>Taxable Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((row, index) => (
-              <tr key={index}>
-                <td>
-                  <select
-                    className="lrBookingSelect"
-                    name="productDescription"
-                    value={row.productDescription}
-                    onChange={(e) => handleTableChange(index, e)}
-                    required
-                  >
-                    <option value="">Select Product</option>
-                    {ledgers
-                      .filter((ledger) => ledger.ledgerType === "sales")
-                      .map((ledger) => (
-                        <option key={ledger._id} value={ledger.name}>
-                          {ledger.name}
-                        </option>
-                      ))}
-                  </select>
-                </td>
-                <td>
-                  <input
-                    className="{hsnCode}"
-                    type="text"
-                    name="hsnCode"
-                    value={row.hsnCode}
-                    onChange={(e) => handleTableChange(index, e)}
-                    required
-                  />
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    name="rate"
-                    value={row.rate}
-                    onChange={(e) => handleTableChange(index, e)}
-                    required
-                  />
-                </td>
-                <td>
-                  <select
-                    name="unit"
-                    value={row.unit}
-                    onChange={(e) => handleTableChange(index, e)}
-                    required
-                  >
-                    <option value="">Select Unit</option>
-                    {units.map((unit) => (
-                      <option key={unit._id} value={unit.symbol}>
-                        {unit.symbol} - {unit.formalName}
-                      </option>
-                    ))}
-                  </select>
-                </td>
-
-                <td>
-                  <input
-                    type="number"
-                    name="taxableAmount"
-                    value={row.taxableAmount}
-                    onChange={(e) => handleTableChange(index, e)}
-                    required
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <button
-          type="button"
-          onClick={addTableRow}
-          className={styles.addRowButton}
-        >
-          Add Row
-        </button>
-
-        {/* Total Amount */}
-        {/* Total Amount */}
-        <div
-          className={`${styles.row} ${styles.totalAmount}`}
-          style={{ justifyContent: "flex-end" }}
-        >
-          <label className={styles.totalAmountLabel}>Total Amount</label>
+  <thead>
+    <tr>
+      <th>Product Description</th>
+      <th>HSN Code</th>
+      <th>Rate</th>
+      <th>Unit</th>
+      <th>Taxable Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    {tableData.map((row, index) => (
+      <tr key={index}>
+        <td>
+          <select
+            className="lrBookingSelect"
+            name="productDescription"
+            value={row.productDescription}
+            onChange={(e) => handleTableChange(index, e)}
+            required
+          >
+            <option value="">Select Product</option>
+            {ledgers
+              .filter((ledger) => ledger.ledgerType === "sales")
+              .map((ledger) => (
+                <option key={ledger._id} value={ledger.name}>
+                  {ledger.name}
+                </option>
+              ))}
+          </select>
+        </td>
+        <td>
           <input
-            type="number"
-            name="total"
-            className={styles.totalAmountInput}
-            value={formData.total}
-            onChange={handleChange}
+            type="text"
+            name="hsnCode"
+            value={row.hsnCode}
+            onChange={(e) => handleTableChange(index, e)}
             required
           />
-        </div>
+        </td>
+        <td>
+          <input
+            type="number"
+            name="rate"
+            value={row.rate}
+            onChange={(e) => handleTableChange(index, e)}
+            required
+          />
+        </td>
+        <td>
+          <input
+            type="number"
+            name="unit"
+            value={row.unit }
+            onChange={(e) => handleTableChange(index, e)}
+            required
+          />
+          <span className={styles.unitText}>kg</span>
+        </td>
+        <td>
+          <input
+            type="number"
+            name="taxableAmount"
+            value={row.rate * row.unit || 0} // Auto-calculated
+            readOnly
+          />
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
 
+<button
+  type="button"
+  onClick={addTableRow}
+  className={styles.addRowButton}
+>
+  Add Row
+</button>
+
+{/* Total Amount */}
+<div
+  className={`${styles.row} ${styles.totalAmount}`}
+  style={{ justifyContent: "flex-end" }}
+>
+  <label className={styles.totalAmountLabel}>Total Amount</label>
+  <input
+    type="number"
+    name="total"
+    className={styles.totalAmountInput}
+    value={tableData.reduce((sum, row) => sum + (row.rate * row.unit || 0), 0)} // Sum of taxable amounts
+    readOnly
+  />
+</div>
         <button type="submit" className={styles.button}>
-          Submit
+          Yes / No
         </button>
       </form>
     </div>

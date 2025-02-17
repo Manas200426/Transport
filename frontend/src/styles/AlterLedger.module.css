@@ -25,13 +25,13 @@ body {
 .alterLedger {
   width: 12%;
   max-width: 380px;
-  margin-left: -15px;
+  margin-left: -10px;
   padding: 10px;
   background-color: #f8f9fa;
-  border: 2px solid #0a0a0a;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
-  margin-top: -10px;
+  margin-top: -5px;
   
 }
 
