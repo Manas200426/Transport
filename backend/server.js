@@ -25,7 +25,7 @@ app.use("/api", unitRoutes);  // Base URL: /api/units
 app.use("/api/vehicles", vehicleRoutes);
 
 
-mongoose.connect("mongodb+srv://info:manas123@manishtransport.tjm8j.mongodb.net/?retryWrites=true&w=majority&appName=ManishTransport", {
+mongoose.connect("mongodb://localhost:27017/ledgerDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => console.log("MongoDB Connected"))
