@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import styles from "../styles/LrEntry.module.css";
 import { useEffect } from "react";
 import axios from "axios";
+import SearchableDropdown from "./SearchableDropdown";
 
 const LrBooking = () => {
+  const [totalAmount, setTotalAmount] = useState(0);
   const [cities, setCities] = useState([]);
   const [ledgers, setLedgers] = useState([]);
   const [units, setUnits] = useState([]);
@@ -24,11 +26,18 @@ const LrBooking = () => {
     from: "",
     to: "",
     table: [],
-    total: "",
+    total: "0",
   });
+  
 
   const [tableData, setTableData] = useState([
-    { hsnCode: "", productDescription: "", unit: "", taxableAmount: "" },
+    {
+      hsnCode: "",
+      productDescription: "",
+      rate: "",
+      unit: "",
+      taxableAmount: 0,
+    },
   ]);
 
   const handleChange = (e) => {
@@ -36,21 +45,39 @@ const LrBooking = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleTableChange = (index, e) => {
-    const newTable = [...tableData];
-    newTable[index][e.target.name] = e.target.value;
-    setTableData(newTable);
+  const handleTableChange = (index, event) => {
+    const { name, value } = event.target;
+    setTableData((prevData) => {
+      const updatedData = [...prevData];
+      updatedData[index] = {
+        ...updatedData[index],
+        [name]: value,
+      };
+
+      // Recalculate taxable amount
+      updatedData[index].taxableAmount =
+        Number(updatedData[index].rate || 0) *
+        Number(updatedData[index].unit || 0);
+
+      return updatedData;
+    });
   };
 
   const addTableRow = () => {
     setTableData([
       ...tableData,
-      { hsnCode: "", productDescription: "", unit: "", taxableAmount: "" },
+      {
+        hsnCode: "",
+        productDescription: "",
+        rate: "",
+        unit: "",
+        taxableAmount: "",
+      },
     ]);
   };
   // Fetch units from UnitMaster
   useEffect(() => {
-    fetch("http://localhost:5000/api/units") 
+    fetch("http://localhost:5000/api/units")
       .then((response) => response.json())
       .then((data) => setUnits(data))
       .catch((error) => console.error("Error fetching units:", error));
@@ -110,10 +137,17 @@ const LrBooking = () => {
           from: "",
           to: "",
           table: [],
-          total: "",
+          total: "0",
         });
+        setTotalAmount(0);
         setTableData([
-          { hsnCode: "", productDescription: "", unit: "", taxableAmount: "" },
+          {
+            hsnCode: "",
+            productDescription: "",
+            rate: "",
+            unit: "",
+            taxableAmount: 0,
+          },
         ]);
       } else {
         console.error("Server Response Error:", responseData);
@@ -124,6 +158,16 @@ const LrBooking = () => {
       alert("An error occurred");
     }
   };
+
+  useEffect(() => {
+    const total = tableData.reduce(
+      (sum, row) => sum + (Number(row.rate || 0) * Number(row.unit || 0)), 
+      0
+    );
+  
+    setTotalAmount(total);
+    setFormData((prev) => ({ ...prev, total: total.toString() }));
+  }, [tableData]);
 
   return (
     <div className={styles.container}>
@@ -155,33 +199,21 @@ const LrBooking = () => {
         {/* Consignor, Consignee & To Pay */}
         <div className={styles.row}>
           <label>Consignor Name</label>
-          <select
+          <SearchableDropdown
             name="consignorName"
-            className={styles.select}
+            options={ledgers}
             value={formData.consignorName}
             onChange={handleChange}
-          >
-            <option value="">Select Consignor</option>
-            {ledgers.map((ledger) => (
-              <option key={ledger._id} value={ledger.name}>
-                {ledger.name}
-              </option>
-            ))}
-          </select>
+            placeholder="Search Consignor"
+          />
           <label>Consignee Name</label>
-          <select
+          <SearchableDropdown
             name="consigneeName"
-            className={styles.select}
+            options={ledgers}
             value={formData.consigneeName}
             onChange={handleChange}
-          >
-            <option value="">Select Consignee</option>
-            {ledgers.map((ledger) => (
-              <option key={ledger._id} value={ledger.name}>
-                {ledger.name}
-              </option>
-            ))}
-          </select>
+            placeholder="Search Consignee"
+          />
           <label>To Pay</label>
           <input
             type="number"
@@ -214,33 +246,23 @@ const LrBooking = () => {
             required
           />
           <label>From</label>
-          <select
+          <SearchableDropdown
             name="from"
-            className={styles.select}
+            options={cities}
             value={formData.from}
             onChange={handleChange}
-          >
-            <option value="">Select From City</option>
-            {cities.map((city) => (
-              <option key={city._id} value={city.name}>
-                {city.name}
-              </option>
-            ))}
-          </select>
+            placeholder="Select From City"
+          />
+
+          {/* To City */}
           <label>To</label>
-          <select
+          <SearchableDropdown
             name="to"
-            className={styles.select}
+            options={cities}
             value={formData.to}
             onChange={handleChange}
-          >
-            <option value="">Select To City</option>
-            {cities.map((city) => (
-              <option key={city._id} value={city.name}>
-                {city.name}
-              </option>
-            ))}
-          </select>
+            placeholder="Select To City"
+          />
         </div>
 
         {/* E-Way Bill Details */}
@@ -308,99 +330,99 @@ const LrBooking = () => {
         {/* Table */}
         {/* Table */}
         <table className={styles.table}>
-  <thead>
-    <tr>
-      <th>Product Description</th>
-      <th>HSN Code</th>
-      <th>Rate</th>
-      <th>Unit</th>
-      <th>Taxable Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    {tableData.map((row, index) => (
-      <tr key={index}>
-        <td>
-          <select
-            className="lrBookingSelect"
-            name="productDescription"
-            value={row.productDescription}
-            onChange={(e) => handleTableChange(index, e)}
-            required
-          >
-            <option value="">Select Product</option>
-            {ledgers
-              .filter((ledger) => ledger.ledgerType === "sales")
-              .map((ledger) => (
-                <option key={ledger._id} value={ledger.name}>
-                  {ledger.name}
-                </option>
-              ))}
-          </select>
-        </td>
-        <td>
-          <input
-            type="text"
-            name="hsnCode"
-            value={row.hsnCode}
-            onChange={(e) => handleTableChange(index, e)}
-            required
-          />
-        </td>
-        <td>
+          <thead>
+            <tr>
+              <th>Product Description</th>
+              <th>HSN Code</th>
+              <th>Rate</th>
+              <th>Unit</th>
+              <th>Taxable Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((row, index) => (
+              <tr key={index}>
+                <td>
+                  <select
+                    className="lrBookingSelect"
+                    name="productDescription"
+                    value={row.productDescription}
+                    onChange={(e) => handleTableChange(index, e)}
+                    required
+                  >
+                    <option value="">Select Product</option>
+                    {ledgers
+                      .filter((ledger) => ledger.ledgerType === "sales")
+                      .map((ledger) => (
+                        <option key={ledger._id} value={ledger.name}>
+                          {ledger.name}
+                        </option>
+                      ))}
+                  </select>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="hsnCode"
+                    value={row.hsnCode}
+                    onChange={(e) => handleTableChange(index, e)}
+                    required
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    name="rate"
+                    value={row.rate}
+                    onChange={(e) => handleTableChange(index, e)}
+                    required
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    name="unit"
+                    value={row.unit}
+                    onChange={(e) => handleTableChange(index, e)}
+                    required
+                  />
+                  <span className={styles.unitText}>kg</span>
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    name="taxableAmount"
+                    value={row.taxableAmount}
+                    readOnly
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <button
+          type="button"
+          onClick={addTableRow}
+          className={styles.addRowButton}
+        >
+          Add Row
+        </button>
+
+        {/* Total Amount */}
+        <div
+          className={`${styles.row} ${styles.totalAmount}`}
+          style={{ justifyContent: "flex-end" }}
+        >
+          <label className={styles.totalAmountLabel}>Total Amount</label>
           <input
             type="number"
-            name="rate"
-            value={row.rate}
-            onChange={(e) => handleTableChange(index, e)}
-            required
-          />
-        </td>
-        <td>
-          <input
-            type="number"
-            name="unit"
-            value={row.unit }
-            onChange={(e) => handleTableChange(index, e)}
-            required
-          />
-          <span className={styles.unitText}>kg</span>
-        </td>
-        <td>
-          <input
-            type="number"
-            name="taxableAmount"
-            value={row.rate * row.unit || 0} // Auto-calculated
+            name="total"
+            className={styles.totalAmountInput}
+            value = {totalAmount}
             readOnly
           />
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
-
-<button
-  type="button"
-  onClick={addTableRow}
-  className={styles.addRowButton}
->
-  Add Row
-</button>
-
-{/* Total Amount */}
-<div
-  className={`${styles.row} ${styles.totalAmount}`}
-  style={{ justifyContent: "flex-end" }}
->
-  <label className={styles.totalAmountLabel}>Total Amount</label>
-  <input
-    type="number"
-    name="total"
-    className={styles.totalAmountInput}
-    value={tableData.reduce((sum, row) => sum + (row.rate * row.unit || 0), 0)} // Sum of taxable amounts
-    readOnly
-  />
-</div>
+        </div>
         <button type="submit" className={styles.button}>
           Yes / No
         </button>

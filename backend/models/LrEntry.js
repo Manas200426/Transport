@@ -29,10 +29,12 @@ const lrSchema = new mongoose.Schema({
   from: { type: String, required: true },
   to: { type: String, required: true },
   table: [{
-    hsnCode: { type: String, required: true }, // HSN Code for tax classification
-    productDescription: { type: String, required: true }, // Description of the product
-    unit: { type: String, required: true }, // Units (e.g., kg, liter, pcs)
-    taxableAmount: { type: Number, required: true } // Taxable amount per item
+// HSN Code for tax classification
+    productDescription: { type: String, required: true },// Description of the product
+    hsnCode: { type: String, required: true }, 
+    rate: { type: Number, required: true },
+    unit: { type: Number, required: true }, // Units (e.g., kg, liter, pcs)
+    taxableAmount: { type: Number} // Taxable amount per item
   }],
   total: { type: Number, required: true }
 }, { timestamps: true });

@@ -16,6 +16,7 @@
   padding: 10px;
   font-size: 14px;
   font-weight: bold;
+  z-index: 1;
 }
 .logo {
   width: 40px;
@@ -27,11 +28,13 @@
 
 /* Sidebar - Thinner & More Left */
 .sidebar {
+  
   width: 110px; /* Further reduced width */
   background-color: #7a99b8;
   padding: 5px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   border-right: 2px solid black; /* Thin black separator */
   height: 100%;
 }
@@ -44,7 +47,7 @@
   margin: 2px 0;
   cursor: pointer;
   text-align: left;
-  font-size: 10px; /* Smaller text */
+  font-size: 13px; /* Smaller text */
   color: white;
 }
 
