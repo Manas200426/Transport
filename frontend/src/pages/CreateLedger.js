@@ -25,7 +25,7 @@ const CreateLedger = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/ledger-types") // Update with your actual API endpoint
+    fetch("https://transport-jxj1.onrender.com/api/ledger-types") // Update with your actual API endpoint
       .then((response) => response.json())
       .then((data) => setLedgerTypes(data))
       .catch((error) => console.error("Error fetching ledger types:", error));
@@ -59,7 +59,7 @@ const CreateLedger = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/ledger/create", {
+      const response = await fetch("https://transport-jxj1.onrender.com/api/ledger/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

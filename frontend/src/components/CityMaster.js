@@ -13,7 +13,7 @@ const CityMaster = () => {
 
   const fetchCities = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/cities/all");
+      const response = await fetch("https://transport-jxj1.onrender.com/api/cities/all");
       const data = await response.json();
       if (data.success) {
         setCities(data.data);
@@ -33,7 +33,7 @@ const CityMaster = () => {
     const newCity = { name: cityName, state: stateName, country };
 
     try {
-      const response = await fetch("http://localhost:5000/api/cities/add-city", {
+      const response = await fetch("https://transport-jxj1.onrender.com/api/cities/add-city", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

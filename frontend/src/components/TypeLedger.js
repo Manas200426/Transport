@@ -12,7 +12,7 @@ const TypeLedger = () => {
 
   const fetchLedgerTypes = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/ledger-types");
+      const response = await fetch("https://transport-jxj1.onrender.com/api/ledger-types");
       const data = await response.json();
       setLedgerTypes(data);
     } catch (error) {
@@ -24,7 +24,7 @@ const TypeLedger = () => {
     if (!type.trim()) return alert("Please enter a valid ledger type");
 
     try {
-      const response = await fetch("http://localhost:5000/api/ledger-types", {
+      const response = await fetch("https://transport-jxj1.onrender.com/api/ledger-types", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ type }),

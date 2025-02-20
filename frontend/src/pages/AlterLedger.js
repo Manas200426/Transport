@@ -14,7 +14,7 @@ const AlterLedger = () => {
 
   const fetchLedgers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/ledger/all");
+      const response = await fetch("https://transport-jxj1.onrender.com/api/ledger/all");
       const data = await response.json();
       setLedgers(data);
       setFilteredLedgers(data);
@@ -35,7 +35,7 @@ const AlterLedger = () => {
   const handleUpdate = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/ledger/update/${selectedLedger._id}`,
+        `https://transport-jxj1.onrender.com/api/ledger/update/${selectedLedger._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

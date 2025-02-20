@@ -18,7 +18,7 @@ const DisplayLr = () => {
   useEffect(() => {
     const fetchLrData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/lr");
+        const response = await fetch("https://transport-jxj1.onrender.com/api/lr");
         if (!response.ok) {
           throw new Error("Failed to fetch LR data");
         }
@@ -83,7 +83,7 @@ const DisplayLr = () => {
   // Handle PDF download
   const handleDownload = () => {
     if (selectedLr) {
-      const pdfUrl = `http://localhost:5000/api/lr/${selectedLr._id}/pdf`;
+      const pdfUrl = `https://transport-jxj1.onrender.com/api/lr/${selectedLr._id}/pdf`;
       window.open(pdfUrl, "_blank");
     }
   };

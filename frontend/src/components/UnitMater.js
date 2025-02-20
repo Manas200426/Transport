@@ -21,7 +21,7 @@ const UnitMaster = () => {
     // Fetch units from backend
     const fetchUnits = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/units");
+            const response = await fetch("https://transport-jxj1.onrender.com/api/units");
             const data = await response.json();
             setUnits(data);
         } catch (error) {
@@ -36,7 +36,7 @@ const UnitMaster = () => {
         setError("");
 
         try {
-            const response = await fetch("http://localhost:5000/api/units", {
+            const response = await fetch("https://transport-jxj1.onrender.com/api/units", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

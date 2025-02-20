@@ -12,7 +12,7 @@ const VehicleMaster = () => {
 
     // Fetch Vehicles
     useEffect(() => {
-        fetch("http://localhost:5000/api/vehicles")
+        fetch("https://transport-jxj1.onrender.com/api/vehicles")
             .then((res) => res.json())
             .then((data) => setVehicles(data))
             .catch((err) => console.error("Error fetching vehicles:", err));
@@ -26,7 +26,7 @@ const VehicleMaster = () => {
     // Handle Form Submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("http://localhost:5000/api/vehicles", {
+        fetch("https://transport-jxj1.onrender.com/api/vehicles", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData)

@@ -77,7 +77,7 @@ const LrBooking = () => {
   };
   // Fetch units from UnitMaster
   useEffect(() => {
-    fetch("http://localhost:5000/api/units")
+    fetch("https://transport-jxj1.onrender.com/api/units")
       .then((response) => response.json())
       .then((data) => setUnits(data))
       .catch((error) => console.error("Error fetching units:", error));
@@ -85,7 +85,7 @@ const LrBooking = () => {
   //  city to from
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/cities/all") // ✅ Correct API endpoint for CityMaster
+      .get("https://transport-jxj1.onrender.com/api/cities/all") // ✅ Correct API endpoint for CityMaster
       .then((response) => {
         if (response.data.success) {
           setCities(response.data.data);
@@ -96,7 +96,7 @@ const LrBooking = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/ledger/all")
+      .get("https://transport-jxj1.onrender.com/api/ledger/all")
       .then((response) => setLedgers(response.data))
       .catch((error) => console.error("Error fetching ledgers:", error));
   }, []);
@@ -108,7 +108,7 @@ const LrBooking = () => {
     console.log("Submitting Data:", finalData); // ✅ Debugging
 
     try {
-      const response = await fetch("http://localhost:5000/api/lr", {
+      const response = await fetch("https://transport-jxj1.onrender.com/api/lr", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

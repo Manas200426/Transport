@@ -15,7 +15,7 @@ const CompanySetting = ({ updateCompanyLogo }) => {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/company/get")
+    axios.get("https://transport-jxj1.onrender.com/api/company/get")
       .then((res) => setCompany(res.data))
       .catch(() => setCompany(null));
   }, []);
@@ -33,7 +33,7 @@ const CompanySetting = ({ updateCompanyLogo }) => {
     const data = new FormData();
     Object.keys(formData).forEach((key) => data.append(key, formData[key]));
 
-    await axios.post("http://localhost:5000/api/company/add", data)
+    await axios.post("https://transport-jxj1.onrender.com/api/company/add", data)
       .then((res) => {
         const updatedCompany = res.data;
         localStorage.setItem("companyDetails", JSON.stringify(updatedCompany));
@@ -47,7 +47,7 @@ const CompanySetting = ({ updateCompanyLogo }) => {
       <h2>Company Settings</h2>
       {company ? (
         <div className={styles.details}>
-          <img src={`http://localhost:5000/uploads/${company.logo}`} alt="Company Logo" className={styles.logo} />
+          <img src={`https://transport-jxj1.onrender.com/uploads/${company.logo}`} alt="Company Logo" className={styles.logo} />
           <p><strong>Name:</strong> {company.name}</p>
           <p><strong>Address:</strong> {company.address}</p>
           <p><strong>CIN:</strong> {company.CIN}</p>
