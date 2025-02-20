@@ -64,7 +64,9 @@ const AdminHome = () => {
           )}
 
           {/* Settings Section - Moved to the bottom */}
-          <div className={styles.settingsContainer}> {/* Added a container */}
+          <div className={styles.settingsContainer}>
+            {" "}
+            {/* Added a container */}
             <button onClick={() => setActiveComponent("companySetting")}>
               Company Setting
             </button>
@@ -83,6 +85,11 @@ const AdminHome = () => {
           {activeComponent === "UnitMaster" && <UnitMater />}
           {activeComponent === "VehicleMaster" && <VehicleMaster />}
         </div>
+      </div>
+      <div className={styles.footer}>
+        <p>
+          Developed by: <span>Globo IT Solutions</span>
+        </p>
       </div>
     </div>
   );

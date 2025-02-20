@@ -9,11 +9,14 @@ const AdminLogin = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("https://transport-jxj1.onrender.com/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
+      const response = await fetch(
+        "https://transport-jxj1.onrender.com/api/auth/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        }
+      );
 
       const data = await response.json();
 
@@ -32,20 +35,24 @@ const AdminLogin = () => {
     <div className={styles.loginPage}>
       <div className={styles.loginBox}>
         <h2 className={styles.title}>Admin Login</h2>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className={styles.inputField}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className={styles.inputField}
-        />
+        <div className={styles.inputContainer}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className={styles.inputField}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.inputField}
+          />
+        </div>
         <button onClick={handleLogin} className={styles.loginButton}>
           Login
         </button>
